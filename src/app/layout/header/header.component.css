@@ -1,17 +1,29 @@
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
   display: flex;
-  align-items: center;
+  align-items: center;       /* vertical alignment */
+  justify-content: space-between; /* logo on left, menu on right */
+  padding: 0 1rem;
+  height: 60px;
   background-color: #1976d2;
   color: white;
-  font-weight: 600;
-  font-size: 1.2rem;   /* increase size */
 }
 
-.header img {
-  margin: 0 16px;
+/* logo + title grouping */
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* shrink PrimeNG menubar so it fits header */
+.app-menubar {
+  background: transparent !important;
+  border: none !important;
+  flex: 1;              /* let it expand */
+  justify-content: flex-end;
 }
