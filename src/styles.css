@@ -1,0 +1,146 @@
+/* Root theme variables */
+:root {
+  --primary-color: #1976d2;     /* Deep blue */
+  --primary-dark: #0d47a1;      /* Darker blue */
+  --primary-light: #63a4ff;     /* Lighter blue */
+  --accent-color: #42a5f5;      /* Accent blue */
+  --background-color: #f5f9ff;  /* Soft white background */
+  --text-color: #1a1a1a;        /* Dark text */
+  --text-light: #fdfdfd;        /* Light text */
+  --border-color: #d6e4f0;      /* Subtle border */
+  --hover-color: #e3f2fd;       /* Hover highlight */
+  --error-color: #e53935;       /* Error red */
+  --success-color: #2e7d32;     /* Success green */
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Buttons */
+button, .btn {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+button:hover, .btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+button:disabled {
+  background-color: var(--border-color);
+  cursor: not-allowed;
+}
+
+/* Inputs & Form Controls */
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.4);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: white;
+}
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+th {
+  background-color: var(--primary-light);
+  color: var(--text-light);
+}
+tr:hover {
+  background-color: var(--hover-color);
+}
+
+/* Cards / Containers */
+.card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.text-primary { color: var(--primary-color); }
+.text-light { color: var(--text-light); }
+.bg-primary { background-color: var(--primary-color); color: var(--text-light); }
+.bg-light { background-color: var(--background-color); }
+
+/* Alerts */
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.alert-success {
+  background: #e8f5e9;
+  color: var(--success-color);
+  border-left: 5px solid var(--success-color);
+}
+.alert-error {
+  background: #ffebee;
+  color: var(--error-color);
+  border-left: 5px solid var(--error-color);
+}
+.alert-info {
+  background: #e3f2fd;
+  color: var(--primary-dark);
+  border-left: 5px solid var(--primary-color);
+}
