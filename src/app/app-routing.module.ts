@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {DashboardComponent} from "./features/dashboard/dashboard.component";
 import {ListingsComponent} from "./features/listings/listings.component";
+import {TenantsComponent} from "./features/tenants/tenants.component";
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   {
     path: 'listings',
     component: ListingsComponent
+  }, {
+    path: 'tenants',
+    loadChildren: () => import('./features/tenants/tenants.module').then(m => m.TenantsModule)
   },
   {
     path: '',

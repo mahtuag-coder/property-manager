@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
     this.items = [
       { label: 'Dashboard', icon: 'pi pi-home', routerLink: '/dashboard' },
       { label: 'Listings', icon: 'pi pi-list', routerLink: '/listings'},
-      { label: 'Transactions', icon: 'pi pi-chart-line' },
+      { label: 'Tenants', icon: 'pi pi-user', routerLink: '/tenants' },
       { label: 'Messages', icon: 'pi pi-inbox' }
     ];
   }

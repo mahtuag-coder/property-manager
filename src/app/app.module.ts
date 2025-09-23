@@ -9,6 +9,7 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import {TabMenuModule} from "primeng/tabmenu";
 import { ListingsComponent } from './features/listings/listings.component';
 import {MenubarModule} from "primeng/menubar";
+import { TenantsComponent } from './features/tenants/tenants.component';
 
 @NgModule({
   declarations: [
