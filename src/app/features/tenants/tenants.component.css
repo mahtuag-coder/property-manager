@@ -1,0 +1,11 @@
+.status-active {
+  color: green;
+  font-weight: 600;
+}
+.status-inactive {
+  color: gray;
+}
+.status-blacklisted {
+  color: red;
+  font-weight: 600;
+}
