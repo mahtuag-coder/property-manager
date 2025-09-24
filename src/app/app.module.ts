@@ -10,6 +10,10 @@ import {TabMenuModule} from "primeng/tabmenu";
 import { ListingsComponent } from './features/listings/listings.component';
 import {MenubarModule} from "primeng/menubar";
 import { TenantsComponent } from './features/tenants/tenants.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {MessageService} from "primeng/api";
+import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -21,9 +25,15 @@ import { TenantsComponent } from './features/tenants/tenants.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MenubarModule
+    MenubarModule,
+    HttpClientModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

@@ -1,7 +1,15 @@
 <h2> Tenants List </h2>
 
 <div class="card">
-  <p-table [value]="tenants" [paginator]="true" [rows]="5" [tableStyle]="{'min-width': '75rem'}">
+  <p-table
+    [value]="tenants"
+    [lazy] = "true"
+    (onLazyLoad)="loadTenants($event)"
+    [paginator]="true"
+    [rows]="5"
+    [totalRecords]="totalRecords"
+    [loading] = "loading"
+    [tableStyle]="{'min-width': '75rem'}">
     <ng-template pTemplate="caption">
       <div class="flex">
       <span class="p-input-icon-left ml-auto">
@@ -17,8 +25,7 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:22%">First Name</th>
-        <th style="width:22%">Last Name</th>
+        <th style="width:22%">Name</th>
         <th style="width:22%">Email</th>
         <th style="width:22%">Phone</th>
         <th style="width:12%">Status</th>
@@ -26,19 +33,24 @@
     </ng-template>
     <ng-template pTemplate="body" let-tenant>
       <tr>
-        <td>{{ tenant.firstName }}</td>
-        <td>{{ tenant.lastName }}</td>
+        <td>{{ tenant.name }}</td>
         <td>{{ tenant.email }}</td>
         <td>{{ tenant.phone }}</td>
         <td>
           <span [ngClass]="{
-              'status-active': tenant.status === 'Active',
-              'status-inactive': tenant.status === 'Inactive',
-              'status-blacklisted': tenant.status === 'Blacklisted'
+              'status-active': tenant.status === 'ACTIVE',
+              'status-inactive': tenant.status === 'INACTIVE',
+              'status-blacklisted': tenant.status === 'BLACKLISTED'
             }">
             {{ tenant.status }}
           </span>
         </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No tenants found.</td>
       </tr>
     </ng-template>
 
