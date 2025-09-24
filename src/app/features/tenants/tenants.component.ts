@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Tenant} from "../../models/tenant.model";
 import {TenantService} from "../../core/services/tenant.service";
-import {TenantStatus} from "../../models/tenantStatus";
-import {LazyLoadEvent, MessageService} from "primeng/api";
+import {LazyLoadEvent} from "primeng/api";
 
 @Component({
   selector: 'app-tenants',
@@ -15,8 +14,7 @@ export class TenantsComponent implements OnInit {
   loading = false;
 
   constructor(
-    private tenantService: TenantService,
-    private messageService: MessageService) {
+    private tenantService: TenantService) {
   }
 
   ngOnInit(): void {
@@ -28,11 +26,17 @@ export class TenantsComponent implements OnInit {
     const page = event.first ? event.first / (event.rows ?? 5) : 0;
     const size = event.rows ?? 5;
 
-
-    this.tenantService.getTenants(page, size).subscribe(response => {
-      this.tenants = response.content;
-      this.totalRecords = response.totalElements;
-      this.loading = false;
+    this.tenantService.getTenants(page, size).subscribe({
+      next: response => {
+        this.tenants = response.content;
+        this.totalRecords = response.totalElements;
+        this.loading = false;
+      },
+      error: () => {
+        this.tenants = [];
+        this.totalRecords = 0;
+        this.loading = false;
+      }
     });
   }
 
