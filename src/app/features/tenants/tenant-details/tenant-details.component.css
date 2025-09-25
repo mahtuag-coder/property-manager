@@ -1,0 +1,23 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes button to right */
+  width: 100%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+
+.edit-btn {
+  margin-left: auto; /* pushes button to far right */
+}
+
+.button-group {
+  display: flex;
+  gap: 1.5rem; /* adjust as needed */
+  margin-top: 1rem;
+}
+

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Tenant} from "../../models/tenant.model";
 import {TenantService} from "../../core/services/tenant.service";
 import {LazyLoadEvent} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tenants',
@@ -14,15 +15,15 @@ export class TenantsComponent implements OnInit {
   loading = false;
 
   constructor(
-    private tenantService: TenantService) {
+    private tenantService: TenantService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
+    this.loading = true;
   }
 
   loadTenants(event: LazyLoadEvent) {
-    this.loading = true;
-
     const page = event.first ? event.first / (event.rows ?? 5) : 0;
     const size = event.rows ?? 5;
 
@@ -38,6 +39,11 @@ export class TenantsComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  loadTenantDetailsPage(event: any): void {
+    const tenant = event.data;
+    void this.router.navigateByUrl(`/tenants/${tenant.id}`);
   }
 
 

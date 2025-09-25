@@ -3,12 +3,14 @@
 <div class="card">
   <p-table
     [value]="tenants"
-    [lazy] = "true"
+    [lazy]="true"
     (onLazyLoad)="loadTenants($event)"
+    (onRowSelect)="loadTenantDetailsPage($event)"
     [paginator]="true"
     [rows]="5"
+    selectionMode="single"
     [totalRecords]="totalRecords"
-    [loading] = "loading"
+    [loading]="loading"
     [tableStyle]="{'min-width': '75rem'}">
     <ng-template pTemplate="caption">
       <div class="flex">
@@ -32,8 +34,8 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-tenant>
-      <tr>
-        <td>{{ tenant.name }}</td>
+      <tr [pSelectableRow]="tenant">
+        <td>{{ tenant.lastName }}, {{ tenant.firstName }}</td>
         <td>{{ tenant.email }}</td>
         <td>{{ tenant.phone }}</td>
         <td>

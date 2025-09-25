@@ -2,7 +2,8 @@ import {TenantStatus} from "./tenantStatus";
 
 export interface Tenant {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   status: TenantStatus;
