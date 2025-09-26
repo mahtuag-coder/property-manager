@@ -18,10 +18,16 @@ export class TenantService {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
-    return this.http.get<TenantResponse>(`${this.baseUrl}/tenant`, {params});
+    return this.http.get<TenantResponse>(`${this.baseUrl}/tenants`, {params});
   }
 
-  getTenantDetails(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/tenant/${id}`);
+  getTenantDetails(id: number): Observable<Tenant> {
+    return this.http.get<Tenant>(`${this.baseUrl}/tenants/${id}`);
   }
+
+  updateTenant(id: number, tenant: Tenant): Observable<Tenant> {
+    return this.http.patch<Tenant>(`${this.baseUrl}/tenants/${id}`, tenant);
+  }
+
+
 }

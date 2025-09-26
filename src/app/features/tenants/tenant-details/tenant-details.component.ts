@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TenantService} from "../../../core/services/tenant.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Tenant} from "../../../models/tenant.model";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-tenant-details',
@@ -17,7 +18,9 @@ export class TenantDetailsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private tenantService: TenantService
+    private router: Router,
+    private tenantService: TenantService,
+    private messageService: MessageService
   ) {
   }
 
@@ -55,6 +58,24 @@ export class TenantDetailsComponent implements OnInit {
   }
 
   onSave(): void {
+    if(this.tenantForm.valid) {
+      this.tenantService.updateTenant(this.tenant.id, this.tenantForm.value).subscribe({
+        next: (response) => {
+          this.tenant = response;
+          this.tenantForm.disable();
+          this.isEditMode = false;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Tenant Updated',
+            detail: 'Tenant details saved successfully.'
+          });
+
+          this.router.navigate(['/tenants']);
+        }
+      });
+    } else {
+      this.tenantForm.markAllAsTouched();
+    }
 
   }
 
