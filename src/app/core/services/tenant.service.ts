@@ -29,5 +29,9 @@ export class TenantService {
     return this.http.patch<Tenant>(`${this.baseUrl}/tenants/${id}`, tenant);
   }
 
+  createTenant(tenant: Tenant): Observable<Tenant> {
+    return this.http.post<Tenant>(`${this.baseUrl}/tenants`, tenant);
+  }
+
 
 }

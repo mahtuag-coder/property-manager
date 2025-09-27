@@ -2,7 +2,7 @@
   <p-card>
     <ng-template pTemplate="header">
       <div class="header-container">
-        <span class="title">Tenant Details</span>
+        <span class="title">{{ isCreateMode ? 'Create Tenant' : 'Update Tenant' }}</span>
         <button pButton type="button" icon="pi pi-pencil"
                 class="p-button-text edit-btn"
                 (click)="enableEdit()"
@@ -12,22 +12,52 @@
 
     <form [formGroup]="tenantForm" (ngSubmit)="onSave()">
       <div class="p-fluid">
+
+        <!-- First Name -->
         <div class="p-field">
           <label>First Name</label>
           <input type="text" pInputText formControlName="firstName"/>
+          <small class="error-message"
+                 *ngIf="tenantForm.get('firstName')?.invalid && (tenantForm.get('firstName')?.touched || submitted)">
+            First name is required.
+          </small>
         </div>
+
+        <!-- Last Name -->
         <div class="p-field">
           <label>Last Name</label>
           <input type="text" pInputText formControlName="lastName"/>
+          <small class="error-message"
+                 *ngIf="tenantForm.get('lastName')?.invalid && (tenantForm.get('lastName')?.touched || submitted)">
+            Last name is required.
+          </small>
         </div>
+
+        <!-- Email -->
         <div class="p-field">
           <label>Email</label>
           <input type="email" pInputText formControlName="email"/>
+          <small class="error-message"
+                 *ngIf="tenantForm.get('email')?.errors?.required && (tenantForm.get('email')?.touched || submitted)">
+            Email is required.
+          </small>
+          <small class="error-message"
+                 *ngIf="tenantForm.get('email')?.errors?.email && (tenantForm.get('email')?.touched || submitted)">
+            Invalid email format.
+          </small>
         </div>
+
+        <!-- Phone -->
         <div class="p-field">
           <label>Phone</label>
           <input type="text" pInputText appPhoneMask formControlName="phone"/>
+          <small class="error-message"
+                 *ngIf="tenantForm.get('phone')?.invalid && (tenantForm.get('phone')?.touched || submitted)">
+            Phone is required.
+          </small>
         </div>
+
+        <!-- Status -->
         <div class="p-field">
           <label>Status</label>
           <p-dropdown [options]="[
@@ -37,14 +67,18 @@
             ]"
                       formControlName="status">
           </p-dropdown>
+          <small class="error-message"
+                 *ngIf="tenantForm.get('status')?.invalid && (tenantForm.get('status')?.touched || submitted)">
+            Status is required.
+          </small>
         </div>
+
       </div>
 
       <div class="button-group" *ngIf="isEditMode">
         <button pButton type="submit" label="Save" class="p-button-success"></button>
         <button pButton type="button" label="Cancel" class="p-button-secondary" (click)="onCancel()"></button>
       </div>
-
     </form>
   </p-card>
 </div>

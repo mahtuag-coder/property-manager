@@ -9,3 +9,14 @@
   color: red;
   font-weight: 600;
 }
+
+.fab-container {
+  position: fixed;
+  bottom: 5rem;   /* distance from bottom */
+  right: 2rem;    /* distance from right */
+  z-index: 1000;  /* stays above other content */
+}
+
+::ng-deep .fab-container .p-button {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* floating shadow */
+}

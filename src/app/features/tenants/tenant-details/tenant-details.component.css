@@ -21,3 +21,10 @@
   margin-top: 1rem;
 }
 
+.error-message {
+  color: #e53935; /* red */
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
