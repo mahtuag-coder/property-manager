@@ -37,7 +37,7 @@
       <tr [pSelectableRow]="tenant">
         <td>{{ tenant.lastName }}, {{ tenant.firstName }}</td>
         <td>{{ tenant.email }}</td>
-        <td>{{ tenant.phone }}</td>
+        <td>{{ tenant.phone | formatPhone }}</td>
         <td>
           <span [ngClass]="{
               'status-active': tenant.status === 'ACTIVE',

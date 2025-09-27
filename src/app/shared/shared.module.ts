@@ -8,11 +8,13 @@ import {InputTextModule} from "primeng/inputtext";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {DropdownModule} from "primeng/dropdown";
+import { FormatPhonePipe } from './pipes/format-phone.pipe';
+import { PhoneMaskDirective } from './directives/phone-mask.directive';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [FormatPhonePipe, PhoneMaskDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -35,8 +37,9 @@ import {DropdownModule} from "primeng/dropdown";
     InputTextModule,
     CardModule,
     ButtonModule,
-    DropdownModule
-
+    DropdownModule,
+    FormatPhonePipe,
+    PhoneMaskDirective
   ]
 })
 export class SharedModule { }
