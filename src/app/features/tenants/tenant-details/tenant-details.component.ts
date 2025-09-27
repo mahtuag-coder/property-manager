@@ -74,6 +74,7 @@ export class TenantDetailsComponent implements OnInit {
       this.tenantForm.markAllAsTouched();
       return;
     }
+
       if (this.isCreateMode) {
         this.createTenant();
       } else {
@@ -82,10 +83,15 @@ export class TenantDetailsComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.tenantForm.reset(this.tenant);
-    this.tenantForm.disable();
-    this.isEditMode = false;
+    if (this.isCreateMode) {
+      this.tenantForm.reset({ status: 'ACTIVE' });
+    } else {
+      this.tenantForm.reset(this.tenant);
+      this.tenantForm.disable();
+      this.isEditMode = false;
+    }
   }
+
 
   updateTenant(): void {
     this.tenantService.updateTenant(this.tenant.id, this.tenantForm.value).subscribe({
@@ -93,11 +99,7 @@ export class TenantDetailsComponent implements OnInit {
         this.tenant = response;
         this.tenantForm.disable();
         this.isEditMode = false;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Tenant Updated',
-          detail: 'Tenant details saved successfully.'
-        });
+        this.displaySuccessToast();
         this.navigateBackToTenants();
       }
     });
@@ -106,11 +108,7 @@ export class TenantDetailsComponent implements OnInit {
   createTenant(): void {
     this.tenantService.createTenant(this.tenantForm.value).subscribe({
       next: (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Tenant Updated',
-          detail: 'Tenant details saved successfully.'
-        });
+        this.displaySuccessToast();
         this.navigateBackToTenants();
       },
       error: () => console.log('Failed to create tenant.')
@@ -123,6 +121,14 @@ export class TenantDetailsComponent implements OnInit {
 
   navigateBackToTenants(): void {
     this.router.navigate(['/tenants']);
+  }
+
+  displaySuccessToast() {
+    this.messageService.add({
+      severity: 'success',
+      summary: this.isCreateMode? 'Tenant Created': 'Tenant Updated',
+      detail: 'Tenant details saved successfully.'
+    });
   }
 
 }
